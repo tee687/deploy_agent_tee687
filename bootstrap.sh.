@@ -1,0 +1,31 @@
+#!/bin/bash
+trap 'echo -e "\nInterrupted"; exit 1' SIGINT
+
+# Get Version
+echo "Enter the version name (e.g., v1):"
+read USER_INPUT
+PARENT_DIR="attendance_tracker_$USER_INPUT"
+
+# Architecture creation
+mkdir -p "$PARENT_DIR/Helpers" "$PARENT_DIR/reports"
+touch "$PARENT_DIR/attendance_checker.py" "$PARENT_DIR/Helpers/assets.csv" "$PARENT_DIR/reports/reports.log"
+
+# Robust JSON initialization
+echo '{"Warning": "75%", "Failure": "50%"}' > "$PARENT_DIR/Helpers/config.json"
+
+# Prompt for dynamic values
+echo "Update attendance thresholds? (Press Enter for defaults)"
+read -p "Enter Warning threshold (e.g., 80%): " NEW_WARNING
+read -p "Enter Failure threshold (e.g., 45%): " NEW_FAILURE
+
+# Apply defaults
+NEW_WARNING=${NEW_WARNING:-75%}
+NEW_FAILURE=${NEW_FAILURE:-50%}
+
+# Stream Editing (sed) for BOTH values
+sed -i "s/\"Warning\": \".*\"/\"Warning\": \"$NEW_WARNING\"/" "$PARENT_DIR/Helpers/config.json"
+sed -i "s/\"Failure\": \".*\"/\"Failure\": \"$NEW_FAILURE\"/" "$PARENT_DIR/Helpers/config.json"
+
+echo "------------------------------------------"
+echo "Project Factory Complete: $PARENT_DIR created."
+
