@@ -12,17 +12,20 @@ How to use it :
 1. Start the setup 
 ./setup_attendance.sh
 2. Follow the instructions 
-Type v1 
-3. Run the tracker 
+Type v1
+Choose (y/n) to manually set Warning and Failure percentages.
+
+4. Run the tracker 
 cd attendance_tracker_v1
 python3 attendance_checker.py
-4. Check for the tree structure, it should have 
-
-attendance_checker.py: The main program.
-
-Helpers/: Stores your list of names (assets.csv) and your settings (config.json).
-
-reports/: Stores the final results and alerts
-5. Interrupting the script 
+5. Check for the tree structure, it should have 
+attendance_tracker_{version}/
+├── attendance_checker.py   # Main Python logic
+├── Helpers/
+│   ├── assets.csv          # Student/User data
+│   └── config.json        # Threshold settings
+└── reports/
+    └── reports.log        # Generated alerts
+6. Interrupting the script 
 Press Ctrl+C
-it moves everything to the folder 
+It stops running and  moves everything to the  archive folder 
