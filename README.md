@@ -28,4 +28,6 @@ attendance_tracker_{version}/
     └── reports.log        # Generated alerts
 6. Interrupting the script 
 Press Ctrl+C
-It stops running and  moves everything to the  archive folder 
+It stops running and  moves everything to the  archive folder
+
+ 
